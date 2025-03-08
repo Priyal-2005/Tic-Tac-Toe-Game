@@ -20,6 +20,7 @@ let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
 
 let turnO = true; //playerX, playerO
+let count = 0; //To track for Drwas
 
 //2D Array
 const winPatterns = [
@@ -35,6 +36,7 @@ const winPatterns = [
 
 const resetGame = () => {
     turnO = true;
+    count = 0;
     enableBoxes();
     msgContainer.classList.add("hide");
 }
@@ -51,11 +53,21 @@ boxes.forEach((box) => {
         }
         // Once you've played your turn, you cannot go back and change it
         box.disabled = true; //Once box is clicked and O/X is placed, box value should not be able to change when its clicked again
+        count++; // button is clicked
 
         // As soon as a button is clicked, check if anyone won
-        checkWinner();
+        let isWinner = checkWinner();
+        if (count === 9 && !isWinner) {
+            gameDraw();
+        }
     });
 });
+
+const gameDraw = () => {
+    msg.innerText = "Game was a Draw";
+    msgContainer.classList.remove("hide");
+    disbaleBoxes();
+}
 
 const disbaleBoxes = () => {
     for(let box of boxes){
