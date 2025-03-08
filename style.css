@@ -61,11 +61,16 @@ body{
 
 #msg{
     color: #ffffc7;
-    font-size: 5vmin;
+    font-size: 8vmin;
 }
 
 .msg-container{
-    height: 30vmin;
+    height: 100vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
 }
 
 .hide{
