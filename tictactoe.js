@@ -43,5 +43,23 @@ boxes.forEach((box) => {
         }
         // Once you've played your turn, you cannot go back and change it
         box.disabled = true; //Once box is clicked and O/X is placed, box value should not be able to change when its clicked again
+
+        // As soon as a button is clicked, check if anyone won
+        checkWinner();
     });
 });
+
+const checkWinner = () => {
+    // check all the patterns, check those positions and see if all of them contain same letter
+    for(let pattern of winPatterns) { //pattern is an array
+        let pos1Val = boxes[pattern[0]].innerText;
+        let pos2Val = boxes[pattern[1]].innerText;
+        let pos3Val = boxes[pattern[2]].innerText;
+
+        if (pos1Val != "" && pos2Val != "" && pos3Val != "") {
+            if (pos1Val === pos2Val && pos2Val === pos3Val){
+                console.log("Winner", pos1Val);
+            }
+        }
+    }
+};
